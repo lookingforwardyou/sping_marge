@@ -16,7 +16,6 @@ public class Test {
     @org.junit.Test
     public void test(){
         System.out.println("你好");
-        System.out.println("你好2");
         testSpring.test()
         ;
     }

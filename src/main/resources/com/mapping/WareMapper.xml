@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WareMapper">
+
+    <select id="getWare" resultType="ware" >
+        select * from ware
+        <where>
+            <if test="wareName!=null and wareName!=''">
+                and ware_name like '%${wareName}%'
+            </if>
+            <if test="wareUnit!=null and wareUnit!=''">
+                and ware_unit like '%${wareUnit}%'
+            </if>
+        </where>
+    </select>
+
+    <update id="updateWare" parameterType="ware">
+        update ware
+        <set>
+            <if test="wareName!=null and wareName!=''">
+                ware_name=#{wareName},
+            </if>
+            <if test="wareUnit!=null and wareUnit!=''">
+                ware_unit=#{wareUnit},
+            </if>
+            <if test="wareNum!=null and wareNum!=''">
+                ware_num=#{wareNum},
+            </if>
+        </set>
+        where ware_id=#{wareId}
+    </update>
+
+    <insert id="addWare" parameterType="ware" >
+        insert into ware values(default,#{wareName},#{wareUnit},#{wareNum})
+    </insert>
+
+    <delete id="delectWare" >
+        delete from ware where ware_id=#{wid}
+    </delete>
+</mapper>
